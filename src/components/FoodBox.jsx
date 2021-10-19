@@ -1,24 +1,30 @@
 import React, {Component, Fragment} from 'react';
-// import foods from './foods.json';
-// import 'bulma/css/bulma.css';
+import foods from '../foods.json';
+import 'bulma/css/bulma.css';
 
 export default class FoodBox extends Component {
+
+    state = {
+        foodBox: foods,
+    }
+
     render () {
-        const { food } = this.props;
         return (
             <Fragment>
+                {this.state.foodBox.map((eachFood) => {
+                    return (
                 <div className="box">
                 <article className="media">
                 <div className="media-left">
                     <figure className="image is-64x64">
-                    <img src="https://i.imgur.com/eTmWoAN.png" />
+                    <img alt="foodImage" src={eachFood.image} />
                     </figure>
                 </div>
                 <div className="media-content">
                     <div className="content">
                     <p>
-                        <strong>Pizza</strong> <br />
-                        <small>400 cal</small>
+                        <strong>{eachFood.name}</strong> <br />
+                        <small>{eachFood.calories}</small>
                     </p>
                     </div>
                 </div>
@@ -36,9 +42,12 @@ export default class FoodBox extends Component {
                 </div>
                 </article>
                 </div>
+                )
+            })}
             </Fragment>
         )
     }
 }
 
+//Backend models and Components are the ONLY things to have PascalCasing..
 
